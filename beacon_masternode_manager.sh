@@ -40,14 +40,14 @@
 
 
 # Script version
-VERSION=0.6
+VERSION=0.6.1
 
 
 # Donation addresses
 # Grateful for this work, reusing this work, or in a generous mood?
 # Feel free to send a donation to one of the below addresses.
 # It will be much appreciated.
-DONADDR1="BECN: bWSboX8b64qkgjmLFjDZodNe8jvqhFBWh4"
+DONADDR1="BECN: -- Waiting for new chain address --"
 DONADDR2="BTC : 18JNWyGhfAmhkWs7jzuuHn54jEZRPj81Jx"
 DONADDR3="ETH : 0x067e8b995f7dbaf32081bc32927f6fac29b32055"
 DONADDR4="LTC : LLqwyRiKiuvxkx76grFmbxEeoChLnxvaKH"
@@ -136,11 +136,11 @@ function display_logo() {
     echo -e "${W}         ██████╔╝  ███████╗  ██║  ██║  ╚██████╗  ╚██████╔╝  ██║ ╚████║         "; sleep $DELAY
     echo -e "${W}         ╚═════╝   ╚══════╝  ╚═╝  ╚═╝   ╚═════╝   ╚═════╝   ╚═╝  ╚═══╝         "; sleep $DELAY
     echo -e "${W}                                                                               "; sleep $DELAY
-    echo -e "${W}                 Building A Better World Through The Blockchain                "; sleep $DELAY
+    echo -e "${W}               Building A Better World Through The Blockchain                  "; sleep $DELAY
     echo -e "${W}                                                                               "; sleep $DELAY
-    echo -e "${W}              Beacon is an unique cryptocurrency project building              "; sleep $DELAY
-    echo -e "${W}             a conglomerate of transparent and legitimate platforms            "; sleep $DELAY
-    echo -e "${W}                            in a trust-less industry                           "; sleep $DELAY
+    echo -e "${W}             Beacon is an unique cryptocurrency project building               "; sleep $DELAY
+    echo -e "${W}            a conglomerate of transparent and legitimate platforms             "; sleep $DELAY
+    echo -e "${W}                          in a trust-less industry                             "; sleep $DELAY
     echo -e "${W}                                                                               "; sleep $DELAY
     echo -e "${D}───────────────────────────────────────────────────────────────────────────────"; sleep $DELAY
 }
