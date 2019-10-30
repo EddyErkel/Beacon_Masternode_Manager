@@ -1,6 +1,5 @@
 <pre>
 
-
          ██████╗   ███████╗   █████╗    ██████╗   ██████╗   ███╗   ██╗
          ██╔══██╗  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔═══██╗  ████╗  ██║
          ██████╔╝  █████╗    ███████║  ██║       ██║   ██║  ██╔██╗ ██║
@@ -8,10 +7,10 @@
          ██████╔╝  ███████╗  ██║  ██║  ╚██████╗  ╚██████╔╝  ██║ ╚████║
          ╚═════╝   ╚══════╝  ╚═╝  ╚═╝   ╚═════╝   ╚═════╝   ╚═╝  ╚═══╝
 
-                 Building A Better World Through The Blockchain
+               Building A Better World Through The Blockchain
 
-            Beacon is an unique cryptocurrency project building
-           a conglomerate of transparent and legitimate platforms
+             Beacon is an unique cryptocurrency project building
+            a conglomerate of transparent and legitimate platforms
                           in a trust-less industry
 
 ───────────────────────────────────────────────────────────────────────────────
@@ -42,7 +41,6 @@ beacon_masternode_manager.sh replace strA strB : Replace 'string A' with 'string
 beacon_masternode_manager.sh dupmn             : Install or update dupmn
 beacon_masternode_manager.sh disclaimer        : Display disclaimer
 beacon_masternode_manager.sh donation          : Show donation addresses
-
 
 
 

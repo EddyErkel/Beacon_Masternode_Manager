@@ -40,7 +40,7 @@
 
 
 # Script version
-VERSION=0.5c
+VERSION=0.6
 
 
 # Donation addresses
@@ -128,21 +128,21 @@ DUPMN_SH=$(echo $DUPMN_URL | awk -F'/' '{print $NF}')
 # http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=%0A
 function display_logo() {
     if [ ! -z $1 ]; then DELAY=$1; else DELAY=0.04; fi
-    echo "                                                                               "; sleep $DELAY
-    echo "         ██████╗   ███████╗   █████╗    ██████╗   ██████╗   ███╗   ██╗         "; sleep $DELAY
-    echo "         ██╔══██╗  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔═══██╗  ████╗  ██║         "; sleep $DELAY
-    echo "         ██████╔╝  █████╗    ███████║  ██║       ██║   ██║  ██╔██╗ ██║         "; sleep $DELAY
-    echo "         ██╔══██╗  ██╔══╝    ██╔══██║  ██║       ██║   ██║  ██║╚██╗██║         "; sleep $DELAY
-    echo "         ██████╔╝  ███████╗  ██║  ██║  ╚██████╗  ╚██████╔╝  ██║ ╚████║         "; sleep $DELAY
-    echo "         ╚═════╝   ╚══════╝  ╚═╝  ╚═╝   ╚═════╝   ╚═════╝   ╚═╝  ╚═══╝         "; sleep $DELAY
-    echo "                                                                               "; sleep $DELAY
-    echo "                 Building A Better World Through The Blockchain                "; sleep $DELAY
-    echo "                                                                               "; sleep $DELAY
-    echo "            Beacon is an unique cryptocurrency project building                "; sleep $DELAY
-    echo "           a conglomerate of transparent and legitimate platforms              "; sleep $DELAY
-    echo "                          in a trust-less industry                             "; sleep $DELAY
-    echo "                                                                               "; sleep $DELAY
-    echo "───────────────────────────────────────────────────────────────────────────────"; sleep $DELAY
+    echo -e "${W}                                                                        "; sleep $DELAY
+    echo -e "${W}         ██████╗   ███████╗   █████╗    ██████╗   ██████╗   ███╗   ██╗         "; sleep $DELAY
+    echo -e "${W}         ██╔══██╗  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔═══██╗  ████╗  ██║         "; sleep $DELAY
+    echo -e "${W}         ██████╔╝  █████╗    ███████║  ██║       ██║   ██║  ██╔██╗ ██║         "; sleep $DELAY
+    echo -e "${W}         ██╔══██╗  ██╔══╝    ██╔══██║  ██║       ██║   ██║  ██║╚██╗██║         "; sleep $DELAY
+    echo -e "${W}         ██████╔╝  ███████╗  ██║  ██║  ╚██████╗  ╚██████╔╝  ██║ ╚████║         "; sleep $DELAY
+    echo -e "${W}         ╚═════╝   ╚══════╝  ╚═╝  ╚═╝   ╚═════╝   ╚═════╝   ╚═╝  ╚═══╝         "; sleep $DELAY
+    echo -e "${W}                                                                               "; sleep $DELAY
+    echo -e "${W}                 Building A Better World Through The Blockchain                "; sleep $DELAY
+    echo -e "${W}                                                                               "; sleep $DELAY
+    echo -e "${W}              Beacon is an unique cryptocurrency project building              "; sleep $DELAY
+    echo -e "${W}             a conglomerate of transparent and legitimate platforms            "; sleep $DELAY
+    echo -e "${W}                            in a trust-less industry                           "; sleep $DELAY
+    echo -e "${W}                                                                               "; sleep $DELAY
+    echo -e "${D}───────────────────────────────────────────────────────────────────────────────"; sleep $DELAY
 }
 
 
@@ -621,7 +621,7 @@ function create_config() {
     echo   
     echo -e "${G}CREATE MASTERNODE CONFIGURATION FILE${N}"
     echo
-    echo -e "${D}Creating masternode configuration file $COIN_CONFIG...${N}"
+    echo -e "${D}Creating masternode configuration file ${P}$COIN_CONFIG${N}...${N}"
     # Create coin folder
     if [ ! -d $COIN_FOLDER ]; then
         mkdir -p $COIN_FOLDER 
@@ -663,7 +663,7 @@ function install_bootstrap() {
     if [ -f $COIN_FOLDER/$CHAIN_ZIP ]; then
         CHAIN_DATE=$(date -r $COIN_FOLDER/$CHAIN_ZIP '+%Y-%m-%d %H:%M:%S')  # Get bootstrap file date
         echo 
-        echo -e "${D}A previously downloaded bootstrap file ($CHAIN_ZIP) was found on disk, dated $CHAIN_DATE:${N}"
+        echo -e "${D}A previously downloaded bootstrap file ${P}$CHAIN_ZIP${N} was found on disk, dated $CHAIN_DATE:${N}"
         ls -lh $COIN_FOLDER/$CHAIN_ZIP
         echo
         echo -e "${D}Would you like to ${C}D${D}elete or ${C}U${D}se the file on disk? [d/U]${N}"
@@ -749,7 +749,7 @@ function install_bootstrap() {
         
         # Delete blockchain files and folders
         for ITEM in ${CHAIN_DATA[@]}; do
-            if [ -d $COIN_FOLDER/$ITEM ]; then
+            if [ -d $COIN_FOLDER/$ITEM ] || [ -f $COIN_FOLDER/$ITEM ]; then
                 echo
                 echo -e "${D}Deleting $COIN_FOLDER/$ITEM...${N}"
                 /bin/rm -rf $COIN_FOLDER/$ITEM
@@ -783,14 +783,21 @@ function install_bootstrap() {
             echo
             echo -e "${Y}Finished installing bootstrap.${N}"
         fi
-        
+
         if [[ "$STARTED" == "yes" ]]; then
             node_start
         else
-            echo
-            echo
-            echo -e "${D}Masternode will not be started as it was not running.${N}" 
-        fi
+            if [[ "$ARG1" != "install" ]]; then
+                echo
+                echo
+                echo -e "${D}Masternode was not running. Would you like it to be started? [Y/n]${N}"
+                read -s -n1 SELECTION
+
+                if [[ $SELECTION == @("Y"|"y"|"") ]]; then 
+                    node_start
+                fi
+            fi
+        fi        
     else
         if [[ $SKIPPED == "no" ]]; then
             echo -e "${R}Bootstrap file not found.${N}"  
@@ -826,7 +833,7 @@ function create_bootstrap() {
     if [ -f $COIN_FOLDER/$CHAIN_ZIP ]; then
         CHAIN_DATE=$(date -r $COIN_FOLDER/$CHAIN_ZIP '+%Y-%m-%d %H:%M:%S')  # Get bootstrap file date
         echo 
-        echo -e "${D}A previously downloaded bootstrap file was found on disk, dated $CHAIN_DATE.${N}"
+        echo -e "${D}A previously downloaded bootstrap file ${P}$CHAIN_ZIP${N} was found on disk, dated $CHAIN_DATE.${N}"
         ls -lh $COIN_FOLDER/$CHAIN_ZIP
         echo
         echo -e "${D}Would you like to ${C}D${D}elete the file or ${C}Q${D}uit? [d/Q]${N}"
@@ -1070,8 +1077,8 @@ function create_privkey() {
     echo  
     echo -e "${G}GENERATE MASTERNODE PRIVATE KEY${N}"
     echo
-    echo -e "${D}To generate a private key go to your Windows Wallet > Tools > Debug Console and type 'masternode genkey'.${N}"
-    echo -e "${D}If you do not paste a private key below this script will try to generate it for you.${N}"
+    echo -e "${D}To generate a private key go to your Windows Wallet > Tools > Debug Console and type '${C}masternode genkey${N}'.${N}"
+    echo -e "${D}If you do not paste a private key below this script will try to generate one for you.${N}"
     echo
     echo -e "${D}Please enter your private key below, or press enter to generate one:${N}"
     read -e COINKEY
@@ -1155,7 +1162,7 @@ function update_config() {
     echo  
     echo -e "${G}UPDATE MASTERNODE CONFIGURATION FILE${N}"
     echo
-    echo -e "${D}Updating masternode configuration file $COIN_CONFIG...${N}"
+    echo -e "${D}Updating masternode configuration file ${P}$COIN_CONFIG${N}...${N}"
     sed -i 's/daemon=1/daemon=0/' $COIN_FOLDER/$COIN_CONFIG  
     {
         echo 'masternode=1'
@@ -1183,7 +1190,7 @@ function download_addnodes() {
     echo  
     echo -e "${G}ADD ADDNODE LIST${N}"
     echo
-    echo -e "${D}Adding addnode list to masternode configuration file $COIN_CONFIG...${N}"
+    echo -e "${D}Adding addnode list to masternode configuration file ${P}$COIN_CONFIG${N}...${N}"
     # Verify addnodes list online availability
     wget --spider $NODES_URL >/dev/null 2>&1
     sleep 0.5
@@ -1273,7 +1280,7 @@ function configure_systemd() {
     sleep 0.5
     systemctl enable $COIN_SERVICE # >/dev/null 2>&1
     echo
-    echo -e "${Y}Masternode systemd unit file $COIN_SERVICE created and enabled.${N}"
+    echo -e "${Y}Masternode systemd unit file ${P}$COIN_SERVICE${Y} created and enabled.${N}"
 }
 
 
@@ -1736,7 +1743,7 @@ function installation_summary() {
         fi
     fi
     if [ ! -z "$COINKEY" ]; then
-        echo -e "${D}Configuration files:${N}"    
+        echo -e "${D}Masternode configuration files:${N}"    
         echo -e "${D}- Systemd Unit file         : ${P}/etc/systemd/system/$COIN_SERVICE${N}"
         echo -e "${D}- Masternode Config file    : ${P}$COIN_FOLDER/$COIN_CONFIG${N}"
         echo
@@ -1853,7 +1860,7 @@ function extract() {
                 #unzip -o -j $FILE $COIN_DAEMON -d $DIR                                      # Extract Deamon file
                 #unzip -o -j $FILE $COIN_CLI -d $DIR                                         # Extract CLI file
             else
-                unzip $FILE -d $DIR
+                unzip -o $FILE -d $DIR
             fi
             ;;
         tgz)
@@ -1946,7 +1953,7 @@ if [[ $ARG1 == "install" ]]; then
         install_bootstrap
         node_start
         node_status
-        clear_screen        
+        clear_screen
         display_logo
         installation_summary
     else
