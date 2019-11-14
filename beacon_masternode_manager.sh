@@ -47,7 +47,7 @@ VERSION=0.6.1
 # Grateful for this work, reusing this work, or in a generous mood?
 # Feel free to send a donation to one of the below addresses.
 # It will be much appreciated.
-DONADDR1="BECN: -- Waiting for new chain address --"
+DONADDR1="BECN: bWVQh4kn8XK3ZjCwcm2g9MKgUCAaypYHgz"
 DONADDR2="BTC : 18JNWyGhfAmhkWs7jzuuHn54jEZRPj81Jx"
 DONADDR3="ETH : 0x067e8b995f7dbaf32081bc32927f6fac29b32055"
 DONADDR4="LTC : LLqwyRiKiuvxkx76grFmbxEeoChLnxvaKH"
