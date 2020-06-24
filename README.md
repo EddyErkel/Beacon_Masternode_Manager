@@ -26,22 +26,25 @@ will install and configure dupmn for Beacon when required.
 
 Usage: beacon_masternode_manager.sh <option> [parameters]
 
-beacon_masternode_manager.sh install           : Install Beacon masternode(s)
-beacon_masternode_manager.sh summary           : Display Beacon main masternode installation summary
-beacon_masternode_manager.sh help              : Display this help text
-beacon_masternode_manager.sh update            : Update Beacon binaries
-beacon_masternode_manager.sh bootstrap         : Download and install Beacon bootstrap
-beacon_masternode_manager.sh createbootstrap   : Create Beacon bootstrap (from installed masternode)
-beacon_masternode_manager.sh stop              : Stop Beacon masternode
-beacon_masternode_manager.sh start             : Start Beacon masternode
-beacon_masternode_manager.sh status            : Show Beacon masternode status
-beacon_masternode_manager.sh monitor [seconds] : Monitor Beacon masternode and system continuously
-beacon_masternode_manager.sh showconf          : Display contents of beacon.conf
-beacon_masternode_manager.sh replace strA strB : Replace 'string A' with 'string B' in beacon.conf
-beacon_masternode_manager.sh dupmn             : Install or update dupmn
-beacon_masternode_manager.sh disclaimer        : Display disclaimer
-beacon_masternode_manager.sh donation          : Show donation addresses
-
+install                : Install one or more Beacon masternodes
+summary                : Display Beacon main masternode installation summary
+help                   : Display extended help text (incl. dupmn)
+update                 : Update Beacon binaries
+addnodes               : Add/replace addnode list in beacon.conf
+bootstrap              : Download and install Beacon bootstrap
+createbootstrap        : Create Beacon bootstrap (from installed masternode)
+stop                   : Stop Beacon masternode
+start                  : Start Beacon masternode
+status                 : Show Beacon masternode status
+monitor [seconds]      : Monitor Beacon masternode and system continuously
+bashcompletion         : Add bash-completion commands
+showconf               : Display contents of beacon.conf
+replace [strA] [strB]  : Replace 'string A' with 'string B' in beacon.conf
+createswap             : Create swap file
+optimize               : Enable SSD optimizations
+dupmn                  : Install or update dupmn
+disclaimer             : Display disclaimer
+donation               : Show donation addresses
 
 
 DISCLAIMER
