@@ -38,7 +38,7 @@
 
 
 # Script version
-VERSION=0.8
+VERSION=0.8a
 
 
 # Donation addresses
@@ -88,7 +88,7 @@ COIN_ZIPDIR="beacon-6054d89-lin64/"                                             
 
 
 # Masternode Bootstrap URL
-CHAIN_URL="https://beacon.exp.monitorit4.me/becn-bootstrap.zip"									# Bootstrap URL. The Bootstrap is compressed file containing chain directory's.
+CHAIN_URL="http://167.86.85.70/becn-bootstrap.zip"									# Bootstrap URL. The Bootstrap is compressed file containing chain directory's.
 CHAIN_ZIP=$(echo $CHAIN_URL | awk -F'/' '{print $NF}')                                              # Get bootstrap file name from URL. Will be lowercase <COIN_TICKER>_bootstrap.zip when not provided.
 CHAIN_DATA="blocks chainstate peers.dat"                                                            # Folders and files used for creating bootstrap.zip (separate by spaces, usually blocks chainstate peers.dat). 
                                                                                                     # These folders and files will also be deleted when installing bootstrap.   
