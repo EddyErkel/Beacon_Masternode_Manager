@@ -31,6 +31,8 @@
 # To do someday maybe:                                                                                  #
 # - remove option                                                                                       #
 # - version check                                                                                       #
+# - add IPv6 yes/no option                                                                              #
+# - remove private IP addresses from external-ip selection                                              #
 #                                                                                                       #
 #########################################################################################################
 #                                    MASTERNODE MANAGER                                                 #
@@ -38,7 +40,7 @@
 
 
 # Script version
-VERSION=0.8a
+VERSION=0.8b
 
 
 # Donation addresses
@@ -2413,6 +2415,7 @@ if [[ $ARG1 == "install" ]]; then
         enable_firewall
         configure_systemd
         install_bootstrap
+		bash-completion
         node_start
         node_status
         sleep 3
